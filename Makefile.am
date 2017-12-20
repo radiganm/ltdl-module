@@ -5,8 +5,7 @@
 AM_LDFLAGS  = -pthread                                                         \
               -L/usr/lib -ldl -lm                                              \
               -L/usr/lib/x86_64-linux-gnu -lgflags                             \
-              -lltdl                                                           \
-              -static
+              -lltdl                                                            
 
 AM_CPPFLAGS = -I$(top_srcdir)/include                                          \
               -std=c++1z                                                       \
@@ -16,30 +15,30 @@ AM_FCFLAGS  = -Jmod
 module_ldadd               = libmodule.la                                      \
                              -ldl -lm                                          \
                              -lrt                                              \
-                             -lltdl                                             
+                             -lltdl
 
-bin_PROGRAMS               = loader                                             
+bin_PROGRAMS               = loader
 
 loader_SOURCES             = src/tests/loader.cc
 loader_LDADD               = $(module_ldadd)
 
 lib_LTLIBRARIES            = libmodule.la                                      \
-                             libhello.la
+                             hello.la
 
-libmodule_la_SOURCES       = src/packages/module/Module.cc                      
-libmodule_la_LIBADD        = -lz                                               \
-                             -L/usr/lib/x86_64-linux-gnu -lrt
+libmodule_la_SOURCES       = src/packages/module/Module.cc
+libmodule_la_LIBADD        = -L/usr/lib/x86_64-linux-gnu -lrt
 libmodule_la_LDFLAGS       = -export-symbols-regex '^module_[^_]' -fPIC        \
                              -shared -pthread                                  \
-                             -L/usr/lib/x86_64-linux-gnu -lrt
+                             -L/usr/lib/x86_64-linux-gnu -lrt                   
 
-libhello_la_SOURCES        = src/packages/test/hello.cc                         
-libhello_la_LIBADD         = -lz                                               \
-                             -L/usr/lib/x86_64-linux-gnu -lrt
-libhello_la_LDFLAGS        = -export-symbols-regex '^module_[^_]' -fPIC        \
+
+hello_la_SOURCES           = src/packages/test/hello.cc
+hello_la_LIBADD            = -L/usr/lib/x86_64-linux-gnu -lrt                   
+hello_la_LDFLAGS           = -export-symbols-regex '^module_[^_]' -fPIC        \
                              -shared -pthread                                  \
-                             -L/usr/lib/x86_64-linux-gnu -lrt
+                             -L/usr/lib/x86_64-linux-gnu -lrt                  \
+                             -module                                            
 
-pkginclude_HEADERS         = include/packages/module/Module.h                   
+pkginclude_HEADERS         = include/packages/module/Module.h
 
 ## *EOF*
