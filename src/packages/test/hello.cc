@@ -16,6 +16,7 @@ extern "C"
     if (!argument || *argument == '\0')
     {
       fprintf(stderr, "error: invalid argument, \"%s\".\n", argument ? argument : "(null)");
+      fflush(stderr);
       return -1;
     }
     
@@ -23,9 +24,11 @@ extern "C"
     if (end && *end != '\0')
     {
       fprintf(stderr, "warning: trailing garbage \"%s\".\n", end);
+      fflush(stderr);
     }
 
     printf("Square root of %s is %f\n", argument, sqrt (number));
+    fflush(stdout);
 
     return 0;
   }

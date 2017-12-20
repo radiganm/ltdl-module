@@ -9,24 +9,22 @@
 
 #pragma once
 
+  #define MODULE__PATH_ENV ("MODULE_PATH")
+
 namespace rad::module {
 
   class Module
   {
     public:
-      Module() = default;
+      Module();
       virtual ~Module() {};
+      void load(std::string path="");
     protected:
     private:
+      int errors_;
       friend std::ostream& operator<<(std::ostream &os, const Module& o);
+      char *dlerrordup (char *errormsg);
   };
-
-  std::ostream& operator<<(std::ostream &os, const Module& o)
-  {
-    std::ios::fmtflags flags(os.flags());
-    os.flags(flags);
-    return os;
-  }
 
 } // namespace
 

@@ -14,7 +14,7 @@
   #include <string.h>
   #include <ltdl.h>
 
-  #define MODULE__PATH_ENV "MODULE_PATH"
+  #define MODULE__PATH_ENV ("MODULE_PATH")
 
   using namespace std::chrono_literals;
 
